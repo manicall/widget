@@ -8,18 +8,12 @@ class MyWindow(QtWidgets.QWidget):
         rect = desktop.availableGeometry()
         x = 300; y = 75
         self.setGeometry(rect.width() - x, rect.height() - y, x, y - 20)  # Минимальные размеры
-        self.setWindowOpacity(0.8)
-        pal = self.palette()
-        pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window, QtGui.QColor("#000"))
-        pal.setColor(QtGui.QPalette.Inactive, QtGui.QPalette.Window, QtGui.QColor("#000"))
-        self.setPalette(pal)
         label = QtWidgets.QLabel(
             f"Дней осталось: {str(self.DaysRemain())}\nТекущая неделя: {self.CurrentWeek()}\nВсего недель: {self.Weeks()}"
             , flags=QtCore.Qt.Window)
         label.setAlignment(QtCore.Qt.AlignHCenter)
-        label.setStyleSheet("""
+        label.setStyleSheet(r"""
             padding: 10px;
-            background-color: #000; 
             color: white;
             border-bottom-left-radius:50px;
             border-top-left-radius:50px;
@@ -29,8 +23,10 @@ class MyWindow(QtWidgets.QWidget):
             border-left-color:  qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 red, stop: 1 green);
             border-right-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 red, stop: 1 green);
             border-bottom-color: green;
+            background-color: rgba( 0, 0, 0, 1 );      
         """)
         vbox = QtWidgets.QVBoxLayout()
+
         vbox.addWidget(label)
         vbox.setContentsMargins(0, 0, 0, 0)
         self.setLayout(vbox)
